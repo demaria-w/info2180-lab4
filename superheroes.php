@@ -63,7 +63,9 @@ $superheroes = [
   ], 
 ];
 
-$query = isset($_GET['query']) ? trim($_GET['query']): '';
+$query = filter_input(INPUT_GET, 'query', FILTER_SANITIZE_STRING); //used to sanitize user input
+$query = trim($query ?? '');
+
 if ($query === ''){
     echo "<ul>";
     foreach ($superheroes as $superhero){
@@ -83,7 +85,7 @@ if ($query === ''){
             echo "<p>" . htmlspecialchars($shero['biography']) . "</p>";
         }
     } else {
-        echo "<p> SUPERHERO NOT FOUND </p>";
+        echo "<p class='not-found'> SUPERHERO NOT FOUND </p>";
     }
 }
 
