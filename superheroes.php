@@ -71,17 +71,18 @@ if ($query === ''){
     }
     echo "</ul>";
 } else {
-    $found = false;
-    foreach($superheroes as $superhero){
-        if (strcasecmp($superhero['name'],$query) === 0 || strcasecmp($superhero['alias'], $query) === 0){
-            echo "<h3>" . htmlspecialchars($superhero['alias']) . "</h3>";
-            echo "<h4 class='alias'> A.K.A " . htmlspecialchars($superhero['name']) . "</h4>";
-            echo "<p>" . htmlspecialchars($superhero['biography']) . "</p>";
-            $found = true;
-            break;
+    //using array_filter to search for matching superheroes
+    $results = array_filter($superheroes, function ($shero) use ($query) {
+        return strcasecmp($shero['name'], $query) === 0 || strcasecmp($shero['alias'], $query) === 0;
+    });
+
+    if (!empty($results)){
+        foreach($results as $shero){
+            echo "<h3>" . htmlspecialchars($shero['alias']) . "</h3>";
+            echo "<h4 class='alias'> A.K.A " . htmlspecialchars($shero['name']) . "</h4>";
+            echo "<p>" . htmlspecialchars($shero['biography']) . "</p>";
         }
-    }
-    if (!$found){
+    } else {
         echo "<p> SUPERHERO NOT FOUND </p>";
     }
 }

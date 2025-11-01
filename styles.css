@@ -1,5 +1,24 @@
 /*style sheet */
 
+.heading{
+    display: flex;
+    padding: 300px;
+    margin: 50px;
+    background-color:violet;
+    color:black;
+}
+
+#search-btn{
+    padding: 100px;
+    margin: 20px;
+    background-color:cyan;
+    color:black;
+}
+
+#search-bar{
+    padding: 200px;
+    margin:100px;
+}
 .alias{
     text-transform: uppercase;
 }
