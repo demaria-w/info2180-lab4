@@ -2,7 +2,6 @@
 
 document.addEventListener("DOMContentLoaded",function(){
     document.getElementById('searchbtn').addEventListener('click', function() {
-        //Using the fetch() API to open an AJAX request returning the results of superheroes.php
         const query = document.getElementById("search-bar").value.trim();
         const url = "superheroes.php?query=" + encodeURIComponent(query); // encodeURIComponent used to prevent malicious code being injected
 
